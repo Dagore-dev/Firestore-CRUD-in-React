@@ -1,0 +1,42 @@
+.form{
+    width: 350px;
+    display: grid;
+    grid-template-rows: repeat(3, 50px);
+    justify-content: center;
+    align-items: center;
+}
+
+.form__title{
+    color: #2c2c2c;
+    text-align: center;
+    margin: 1rem;
+}
+
+.form__field,
+.form__submit{
+    border: 1px solid #2c2c2c;
+    border-radius: 5px;
+    outline: none;
+    width: 340px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.form__field{
+    padding-left: 1rem;
+}
+
+.form__submit{
+    text-align: center;
+    color: #f0f8ff;
+    background-color: #2c2c2c;
+}
+
+.form__submit:active{
+    transform: scale(.9);
+    transition: transform .3s;
+}
+
+.form__submit:hover{
+    cursor: pointer;
+}

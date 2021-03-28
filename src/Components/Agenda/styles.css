@@ -1,0 +1,51 @@
+.contactList__title,
+.contactList__noList,
+.contactList__button{
+    text-align: center;
+    margin: 1rem;
+}
+
+.contactList__title{
+    align-self: start;
+}
+
+.contactList{
+    list-style: none;
+    align-self: start;
+}
+
+.contactList__item,
+.contactList__button{
+    width: 340px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: .5rem;
+}
+
+.contactList__button,
+.contactList__item--delete{
+    color: #f0f8ff;
+    border: 1px solid #2c2c2c;
+    background-color: #2c2c2c;
+    border-radius: 5px;
+    outline: none;
+}
+
+.contactList__item--delete{
+    background-color: #dd2222;
+    border: 1px solid #dd2222;
+    float: right;
+    width: 75px;
+    height: 30px;
+}
+
+.contactList__button:active,
+.contactList__item--delete:active{
+    transform: scale(.9);
+    transition: transform .3s;
+}
+
+.contactList__button:hover,
+.contactList__item--delete:hover{
+    cursor: pointer;
+}
