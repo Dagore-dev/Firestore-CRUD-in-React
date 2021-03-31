@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import storeDB from '../../firebaseConfig'
-import './styles.css'
+import storeDB from '../../../../firebaseConfig';
+import './styles.css';
 
-const Form = () => {
+const Form = ( { onNewUser } ) => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [errorMsg, setErrorMsg] = useState(null);
@@ -32,8 +32,8 @@ const Form = () => {
             const user = {name:name, phone:phone}
             try{
                 await storeDB.collection('Agenda').add(user)
-                    .then(console.log('Añadido'));
-                    e.target.reset();
+                e.target.reset();
+                onNewUser();
             }
             catch(e){
                 console.log(e);

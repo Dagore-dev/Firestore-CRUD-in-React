@@ -1,19 +1,12 @@
-import { useEffect, useState } from 'react';
-import storeDB from '../../firebaseConfig';
-import './styles.css'
+import { useEffect } from 'react';
+import storeDB from '../../../../firebaseConfig';
 
-const Agenda = () => {
-    const [users,setUsers] = useState([])
+import './styles.css';
 
-
-    const getUsers = async () => {
-        const { docs } = await storeDB.collection('Agenda').get();
-        const usersArray = docs.map(item => ({id:item.id, ...item.data()}));
-        setUsers(usersArray);
-    }
+const Agenda = ( { users, getUsers } ) => {
 
     useEffect(
-        () => getUsers()
+        () => getUsers()// eslint-disable-next-line
     ,[])
 
     const refresh = (e) => {
@@ -22,10 +15,10 @@ const Agenda = () => {
     }
 
     const deleteUser = async (e, id) => {
-        e.preventDefault()
+        e.preventDefault();
         try{
             await storeDB.collection('Agenda').doc(id).delete()
-                .then(getUsers())
+                .then(getUsers());
         }
         catch(e){
             console.log(e);

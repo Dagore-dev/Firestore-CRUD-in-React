@@ -18,6 +18,7 @@ body {
 .res-container{
   display: grid;
   place-items: center;
+  width: 350px;
 }
 
 .form-container{
@@ -26,10 +27,21 @@ body {
 
 .res-container{
   grid-column: 2 / 3;
-  width: 350px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media screen and (max-width: 768px) {
+  .root{
+    grid-template-columns: 100vw;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .form-container,
+  .res-container{
+    grid-column: 1 / 2;
+  }
 }
