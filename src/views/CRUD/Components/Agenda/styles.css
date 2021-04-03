@@ -23,7 +23,8 @@
 }
 
 .contactList__button,
-.contactList__item--delete{
+.contactList__item--delete,
+.contactList__item--update{
     color: #f0f8ff;
     border: 1px solid #2c2c2c;
     background-color: #2c2c2c;
@@ -31,21 +32,33 @@
     outline: none;
 }
 
-.contactList__item--delete{
-    background-color: #dd2222;
-    border: 1px solid #dd2222;
+.contactList__item--delete,
+.contactList__item--update{
+    margin-left: .5rem;
     float: right;
     width: 75px;
     height: 30px;
 }
 
+.contactList__item--delete{
+    background-color: #dd2222;
+    border: 1px solid #dd2222;
+}
+
+.contactList__item--update{
+    background-color: #2222dd;
+    border: 1px solid #2222dd;
+}
+
 .contactList__button:active,
-.contactList__item--delete:active{
+.contactList__item--delete:active,
+.contactList__item--update:active{
     transform: scale(.9);
     transition: transform .3s;
 }
 
 .contactList__button:hover,
-.contactList__item--delete:hover{
+.contactList__item--delete:hover,
+.contactList__item--update:hover{
     cursor: pointer;
 }

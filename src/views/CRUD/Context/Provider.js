@@ -7,6 +7,8 @@ const StoreDBProvider = ( { children,  } ) => {
     const [phone, setPhone] = useState('');
     const [errorMsg, setErrorMsg] = useState(null);
     const [users,setUsers] = useState([]);
+    const [editMode, setEditMode] = useState(false);
+    const [updatingUser, setUpdatingUser] = useState('');
 
     const validateName = (value) =>{
         const firstNameRegex = /^[ a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ'`'-]+$/
@@ -40,8 +42,20 @@ const StoreDBProvider = ( { children,  } ) => {
         }
     }
 
+    const updateUser = async (e, id) => {
+        e.preventDefault();
+        try{
+            const res = await (await storeDB.collection('Agenda').doc(id).get()).data();
+            setUpdatingUser({id: id, ...res});
+            setEditMode(true);
+        }
+        catch(e){
+            Promise.reject(e);
+        }
+    }
+
     return(
-        <StoreDBContext.Provider value={ { validateName, validatePhone, getUsers, deleteUser, name, setName, phone, setPhone, errorMsg, setErrorMsg, users, setUsers } }>
+        <StoreDBContext.Provider value={ { validateName, validatePhone, getUsers, deleteUser, updateUser, name, setName, phone, setPhone, errorMsg, setErrorMsg, users, setUsers, editMode, setEditMode, updatingUser, setUpdatingUser} }>
             {children}
         </StoreDBContext.Provider>
     )

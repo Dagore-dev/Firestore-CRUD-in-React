@@ -4,7 +4,7 @@ import StoreDBContext from '../../Context/index';
 import './styles.css';
 
 const Agenda = () => {
-    const { getUsers, users, deleteUser} = useContext(StoreDBContext);
+    const { getUsers, users, deleteUser, updateUser} = useContext(StoreDBContext);
     
     useEffect(
         () => getUsers()// eslint-disable-next-line
@@ -22,7 +22,19 @@ const Agenda = () => {
             {users.length !== 0 ? 
             
             <ul className='contactList'>
-                {users.map(item => <li key={item.id} className='contactList__item'>{item.name} - {item.phone} <button onClick={(e) => deleteUser(e, item.id)} className='contactList__item--delete'>Eliminar</button></li>)}
+                {users.map(item => 
+                
+                    <li key={item.id} className='contactList__item'>
+                        
+                        {item.name} - {item.phone} 
+                        
+                        <button onClick={(e) => deleteUser(e, item.id)} className='contactList__item--delete'>Eliminar</button>
+
+                        <button onClick={(e) => updateUser(e, item.id)} className='contactList__item--update'>Actualizar</button>
+                    
+                    </li>
+
+                )}
             </ul>
 
             : 
