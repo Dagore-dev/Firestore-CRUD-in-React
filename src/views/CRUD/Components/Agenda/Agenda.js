@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
-import storeDB from '../../../../firebaseConfig';
+import { useContext, useEffect } from 'react';
+import StoreDBContext from '../../Context/index';
 
 import './styles.css';
 
-const Agenda = ( { users, getUsers } ) => {
-
+const Agenda = () => {
+    const { getUsers, users, deleteUser} = useContext(StoreDBContext);
+    
     useEffect(
         () => getUsers()// eslint-disable-next-line
     ,[])
@@ -12,17 +13,6 @@ const Agenda = ( { users, getUsers } ) => {
     const refresh = (e) => {
         e.preventDefault();
         getUsers();
-    }
-
-    const deleteUser = async (e, id) => {
-        e.preventDefault();
-        try{
-            await storeDB.collection('Agenda').doc(id).delete()
-                .then(getUsers());
-        }
-        catch(e){
-            console.log(e);
-        }
     }
 
     return(

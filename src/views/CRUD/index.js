@@ -1,17 +1,11 @@
-import { useState } from 'react';
-import storeDB from '../../firebaseConfig';
+import { useContext,} from 'react';
+import StoreDBContext from './Context/index';
 
 import Form from './Components/Form/Form';
 import Agenda from './Components/Agenda/Agenda';
 
 const CRUD = () => {
-    const [users,setUsers] = useState([])
-
-    const getUsers = async () => {
-            const { docs } = await storeDB.collection('Agenda').get();
-            const usersArray = docs.map(item => ({id:item.id, ...item.data()}));
-            setUsers(usersArray);
-        }
+    const { getUsers } = useContext(StoreDBContext)
     
     const handleNewUser = () => {
         getUsers();
@@ -21,7 +15,7 @@ const CRUD = () => {
         <>
             <Form onNewUser={() => handleNewUser()} />
 
-            <Agenda users={users} getUsers={() =>getUsers()}  />
+            <Agenda />
         </>
     )
 }

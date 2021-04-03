@@ -1,3 +1,4 @@
+import StoreDBProvider from './views/CRUD/Context/Provider';
 import CRUD from './views/CRUD/index';
 import './App.css';
 
@@ -5,7 +6,9 @@ import './App.css';
 function App() {
   return (
 
-    <CRUD />
+    <StoreDBProvider>
+      <CRUD />
+    </StoreDBProvider>
     
   );
 }

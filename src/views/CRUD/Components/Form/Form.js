@@ -1,25 +1,11 @@
-import { useState } from 'react';
+import { useContext } from "react";
+import StoreDBContext from '../../Context/index';
 import storeDB from '../../../../firebaseConfig';
+
 import './styles.css';
 
-const Form = ( { onNewUser } ) => {
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [errorMsg, setErrorMsg] = useState(null);
-
-    const validateName = (value) =>{
-        const firstNameRegex = /^[ a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ'`'-]+$/
-    
-        if(firstNameRegex.test(value)) return true;
-        else return false;
-    }
-
-    const validatePhone = (value) =>{
-        const phoneRegex = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g
-    
-        if(phoneRegex.test(value)) return true;
-        else return false;
-    }
+const Form = ( {onNewUser} ) => {
+    const {validateName, validatePhone, name, setName, phone, setPhone, errorMsg, setErrorMsg} = useContext(StoreDBContext);
 
     const setUser = async (e) => {
         e.preventDefault();
@@ -29,9 +15,9 @@ const Form = ( { onNewUser } ) => {
         
         else{
             setErrorMsg(null);
-            const user = {name:name, phone:phone}
+            const user = {name:name, phone:phone};
             try{
-                await storeDB.collection('Agenda').add(user)
+                await storeDB.collection('Agenda').add(user);
                 e.target.reset();
                 onNewUser();
             }
